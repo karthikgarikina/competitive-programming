@@ -1,0 +1,1 @@
+#include<bits/stdc++.h>using namespace std;int main(){    int t;    cin>>t;    while(t--){        int n;        cin>>n;        int half=n/2;        int left=(1<<((half)))-2;        int right=(1<<n)-left-2;        left+=(1<<n);        cout<<abs(left-right)<<"\n";    }}
