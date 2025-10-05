@@ -2,17 +2,11 @@ class Solution {
 public:
     string removeSubstring(string str, int k) {
         int left=0,right=0;
-        string ans="";
-        string s=str;
+        string s=str,ans="";
         int limit=2;
         while(limit--){
-            int n=s.size(),idx=-1;
+            int n=s.size();
             for(int i=0;i<n;i++){
-                if(s[i]=='(') break;
-                ans+=')';
-                idx=i;
-            }
-            for(int i=idx+1;i<n;i++){
                 if(s[i]=='('){
                     if(right!=0){
                         while(left>0){
