@@ -14,25 +14,26 @@ public:
         }
         sort(vals.begin(),vals.end());
 
-        long long ans=0;
+
         vector<pair<long long,long long>>dp(4,{INT_MAX,INT_MAX});
         dp[3]={vals[0].first,vals[0].second};
+
+
         for(int i=1;i<vals.size();i++){
+            dp[0]=dp[1],dp[1]=dp[2],dp[2]=dp[3],dp[3]={INT_MAX,INT_MAX};
+
+            long long newPower=vals[i].second,newKey=vals[i].first;
             long long add=0,idx=2;
-            dp[0]=dp[1],dp[1]=dp[2],dp[2]=dp[3];
-            dp[3]={INT_MAX,INT_MAX};
-            for(int j=3;j>=0;j--){
-                if(dp[j].first<vals[i].first-2){
+            for(int j=2;j>=0;j--){
+                long long oldKey=dp[j].first;
+                if(oldKey<newKey-2){
                     idx=j;
-                    add+=vals[i].second;
+                    add+=newPower;
                     break;
                 }
             }
-            cout<<idx<<"  ";
-            // dp[0]=dp[1],dp[1]=dp[2],dp[2]=dp[3];
-            dp[3]={vals[i].first,max(vals[i].second,max(add+dp[idx].second,dp[2].second))};
-            cout<<dp[3].second<<" ";
-             
+            long long finalPower=max(newPower,max(add+dp[idx].second,dp[2].second));
+            dp[3]={newKey,finalPower};
         }
         return dp[3].second; 
         
