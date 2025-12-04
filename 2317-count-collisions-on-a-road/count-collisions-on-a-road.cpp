@@ -1,7 +1,7 @@
 class Solution {
 public:
     int countCollisions(string directions) {
-        int left=-1,idx=0,n=directions.size();
+        int left=-1,n=directions.size();
         int ans=0;
         for(int i=0;i<n;i++){
             if(directions[i]=='L'){
