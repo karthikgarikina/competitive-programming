@@ -9,7 +9,7 @@ public:
             int a=i[0],b=i[1];
             ans[Map[a]]=b;
             Map[b]=Map[a];
-            // Map.erase(Map[i[0]]);
+            Map.erase(a);
         };
         return ans;
     }
