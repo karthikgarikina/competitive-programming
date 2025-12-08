@@ -1,44 +1,50 @@
 class Solution {
 public:
-    string removeSubstring(string str, int k) {
-        int left=0,right=0;
-        string s=str,ans="";
-        int limit=2;
-        while(limit--){
-            int n=s.size();
-            for(int i=0;i<n;i++){
-                if(s[i]=='('){
-                    if(right!=0){
-                        while(left>0){
-                            ans+='(';
-                            left--;
-                        }
-                        while(right>0){
-                            ans+=')';
-                            right--;
-                        }
-                    }
-                    left++;
+    string removeSubstring(string s, int k) {
+        stack<pair<char,int>>S;
+        for(auto ch : s){
+            if(S.empty()){
+                S.push({ch,1});
+            }
+            else if(ch=='('){
+                auto last=S.top();
+                if(last.first==ch){
+                    S.pop();
+                    S.push({ch,last.second+1});
+                }
+                else S.push({ch,1});
+            }
+            else{
+                auto last=S.top();
+                if(last.first==ch){
+                    S.pop();
+                    S.push({ch,last.second+1});
+                }
+                else S.push({ch,1});
+
+                if(S.size()<2) continue;
+                auto last1=S.top();
+                S.pop();
+                auto last2=S.top();
+                S.pop();
+                if(min(last1.second,last2.second)==k){
+                    int rem=last2.second-k;
+                    if(rem!=0) S.push({'(',rem});
                 }
                 else{
-                    right++;
-                    if(min(left,right)==k){
-                        left-=k;
-                        right-=k;
-                    }
+                    S.push(last2),S.push(last1);
                 }
             }
-            while(left>0){
-                ans+='(';
-                left--;
-            }
-            while(right>0){
-                ans+=')';
-                right--;
-            }
-            s=ans;
-            ans="";
         }
-        return s;
+        string ans="";
+        while(!S.empty()){
+            auto last=S.top();
+            S.pop();
+            int len=last.second;
+            char ch=last.first;
+            while(len--) ans+=ch;
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
     }
 };
