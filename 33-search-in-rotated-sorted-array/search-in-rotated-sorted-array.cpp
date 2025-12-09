@@ -6,7 +6,6 @@ public:
         while(l<=r){
             int mid=(l+r)/2;
             int l2=max(l,mid-1),r2=min(r,mid+1);
-            cout<<l<<" "<<mid<<" "<<r<<"\n";
             if(target==nums[mid]){
                 ans=mid;
                 break;
