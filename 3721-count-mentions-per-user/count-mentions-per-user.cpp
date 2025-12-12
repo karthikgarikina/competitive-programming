@@ -52,7 +52,7 @@ public:
                 stringstream ss(mode);
                 string str;
                 char sep=' ';
-                while(ss>>str){
+                while(getline(ss,str,sep)){
                     int idx=stoi(str.substr(2));
                     ans[idx]++;
                 }
