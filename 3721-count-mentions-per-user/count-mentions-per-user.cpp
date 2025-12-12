@@ -19,6 +19,7 @@ public:
             }
             else offline.push_back(i);
         }
+        
         sort(offline.begin(),offline.end(),comp);
         vector<vector<pair<int,int>>>inOff(n);
         for(auto i : offline){
