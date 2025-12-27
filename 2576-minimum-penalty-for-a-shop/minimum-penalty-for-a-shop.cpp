@@ -2,9 +2,6 @@ class Solution {
 public:
     int bestClosingTime(string customers) {
         int n=customers.size(),ycount=0,ncount=0;
-        for(auto i : customers){
-            if(i=='Y') ycount++;
-        }
         int minPen=ycount,ans=0;
         for(int i=0;i<n;i++){
             char ch=customers[i];
