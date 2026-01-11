@@ -1,10 +1,10 @@
 class Solution {
 public:
     int findMaxi(vector<int>count){
-        int n=count.size(), maxArea=0, mini=INT_MAX;
+        int n=count.size(), maxArea=0;
 
         for(int i=0;i<n;i++){
-            mini=INT_MAX;
+            int mini=INT_MAX;
             for(int j=i;j<n;j++){
                 mini=min(mini,count[j]);
                 int area=(j-i+1)*mini;
