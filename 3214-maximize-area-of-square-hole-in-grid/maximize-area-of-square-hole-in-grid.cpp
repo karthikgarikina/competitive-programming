@@ -27,7 +27,8 @@ public:
         }
         hMax=max(hMax,hCnt);
         vMax=max(vMax,vCnt);
-        int len=min(hMax,vMax)+1;
-        return len*len;
+
+        int side=min(hMax,vMax)+1;
+        return side*side;
     }
 };
