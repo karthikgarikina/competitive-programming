@@ -15,6 +15,8 @@ public:
                 hCnt=1;
             }
         }
+        hMax=max(hMax,hCnt);
+        
         for(int i=0;i<vBars.size()-1;i++){
             if(vBars[i]==1 or vBars[i+1]==2+m) continue;
             if(vBars[i]+1==vBars[i+1]){
@@ -25,7 +27,6 @@ public:
                 vCnt=1;
             }
         }
-        hMax=max(hMax,hCnt);
         vMax=max(vMax,vCnt);
 
         int side=min(hMax,vMax)+1;
