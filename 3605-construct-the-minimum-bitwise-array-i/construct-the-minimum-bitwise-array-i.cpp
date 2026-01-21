@@ -2,17 +2,11 @@ class Solution {
 public:
     vector<int> minBitwiseArray(vector<int>& nums) {
         vector<int>ans;
-        int flag=1;
         for(auto i : nums){
-            flag=0;
-            for(int j=1;j<=i;j++){
-                if(((j)|(j+1))==i){
-                    flag=1;
-                    ans.push_back(j);
-                    break;
-                }
-            }
-            if(flag==0) ans.push_back(-1);
+            int firstUnset=(~i) & (i + 1);
+            if(firstUnset==1) ans.push_back(-1);
+            else if(firstUnset>i) ans.push_back((firstUnset>>1)-1);
+            else ans.push_back(i-(firstUnset>>1));
         }
         return ans;
         
