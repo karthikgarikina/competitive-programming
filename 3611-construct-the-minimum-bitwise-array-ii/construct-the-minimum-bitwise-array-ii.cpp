@@ -5,9 +5,10 @@ public:
 
         for(auto i : nums){
             int firstUnset=(~i) & (i + 1);
-            firstUnset=(firstUnset>>1);
+            int lastSet=(firstUnset>>1);
+
             if(i==2) ans.push_back(-1);
-            else ans.push_back(i-(firstUnset));
+            else ans.push_back(i-lastSet);
         }
         return ans;
           
