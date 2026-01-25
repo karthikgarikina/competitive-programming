@@ -3,7 +3,7 @@ public:
     int minimumDifference(vector<int>& nums, int k) {
         sort(nums.begin(),nums.end());
         int n=nums.size(),ans=INT_MAX;
-        for(int i=0;i<n-k+1;i++){
+        for(int i=0;i<=n-k;i++){
             ans=min(ans,abs(nums[i]-nums[i+k-1]));
         }
         return ans;
