@@ -1,7 +1,7 @@
 class Solution {
 public:
-    void dfs(int node, vector<vector<int>>&adj, long long dis, vector<vector<long long>>&dist, int idx, vector<char>&visited){
-        visited[node]=1;
+    void dfs(int node, vector<vector<int>>&adj, long long dis, vector<vector<long long>>&dist, int idx, vector<bool>&visited){
+        visited[node]=true;
         dist[node][idx]=dis;
         for(auto i : adj[node]){
             if(!visited[i]) dfs(i,adj,dis+1,dist,idx,visited);
@@ -20,12 +20,12 @@ public:
             adj[v].push_back(u);
         }
         vector<vector<long long>>dist(n,vector<long long>(3));
-        vector<char>visited(n,0);
+        vector<bool>visited(n,false);
         
         dfs(x,adj,0,dist,0,visited);
-        fill(visited.begin(), visited.end(), 0);
+        fill(visited.begin(), visited.end(), false);
         dfs(y,adj,0,dist,1,visited);
-        fill(visited.begin(), visited.end(), 0);
+        fill(visited.begin(), visited.end(), false);
         dfs(z,adj,0,dist,2,visited);
 
         int ans=0;
