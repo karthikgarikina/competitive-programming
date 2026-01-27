@@ -14,6 +14,7 @@ public:
             auto [cost, node] = pq.top();
             pq.pop();
             if(node == n - 1) return cost;
+            if(minCost[node] < cost) continue;
             for(auto &[n,w] : adj[node]) {
                 if(minCost[n] > cost+w) {
                     minCost[n]=cost+w;
