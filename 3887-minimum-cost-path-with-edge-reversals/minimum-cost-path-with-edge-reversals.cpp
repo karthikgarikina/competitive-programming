@@ -10,11 +10,10 @@ public:
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         pq.push({0,0});
         vector<int> minCost(n, INT_MAX);
-         while(!pq.empty()) {
+        while(!pq.empty()) {
             auto [cost, node] = pq.top();
             pq.pop();
             if(node == n - 1) return cost;
-            if(minCost[node] < cost) continue;
             for(auto &[n,w] : adj[node]) {
                 if(minCost[n] > cost+w) {
                     minCost[n]=cost+w;
