@@ -13,7 +13,7 @@ public:
         while(!pq.empty()) {
             auto [cost, node] = pq.top();
             pq.pop();
-            if(node == n - 1) return cost;
+            if(node == n-1) return cost;
             for(auto &[n,w] : adj[node]) {
                 if(minCost[n] > cost+w) {
                     minCost[n]=cost+w;
