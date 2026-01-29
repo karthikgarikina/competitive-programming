@@ -19,17 +19,17 @@ public:
                 vector<long long>minCost(26,INT_MAX);
                 priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>>pq;
                 pq.push({0,s});
-                long long cst=0;
-                bool flag=true;
+                bool path=false;
                 while(!pq.empty()){
                     auto [c,node]=pq.top();
                     pq.pop();
                     if(node==t){
                         cost[s][t]=c;
                         ans+=c;
-                        flag=false;
+                        path=true;
                         break;
                     }
+                    if(c>minCost[node]) continue;
                     for(auto &[n,w] : adj[node]){
                         if(minCost[n]>c+w){
                             minCost[n]=c+w;
@@ -37,7 +37,7 @@ public:
                         }
                     }
                 }
-                if(flag) return -1;
+                if(!path) return -1;
             }
         }
         return ans;
