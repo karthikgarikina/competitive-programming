@@ -41,7 +41,30 @@ const long long MOD = 1e9 + 7;
 
 // =======================  OG Function  =============================
 void OriginalGangstar() {
-    
+    long long n,k;
+    cin>>n>>k;
+    long long x,a,b,c;
+    cin>>x>>a>>b>>c;
+    vector<long long>arr(n);
+    arr[0]=x;
+    for(long long i=1;i<n;i++) arr[i]=(a*arr[i-1]+b)%c;
+    deque<long long>dq;
+    long long st=0,minXor=0;
+    for(int i=0;i<n;i++){
+        while(!dq.empty() and dq.back()>arr[i]){
+            dq.pop_back();
+        }
+        dq.push_back(arr[i]);
+        
+        if((i-st+1)==k){
+            minXor^=dq.front();
+            if(dq.front()==arr[st]){
+                dq.pop_front();
+            }
+            st++;
+        }
+    }
+    cout<<minXor<<endl;
 }
 
 int main() {
@@ -50,11 +73,13 @@ int main() {
     #ifndef ONLINE_EXEC
     freopen("debug_log.txt", "w", stderr);
     #endif
+    
     OriginalGangstar();
-    long long T;
-    cin >> T;
-    while(T--) {
-        OriginalGangstar();
-    }
+
+    // long long T;
+    // cin >> T;
+    // while(T--) {
+    //     OriginalGangstar();
+    // }
     return 0;
 }
