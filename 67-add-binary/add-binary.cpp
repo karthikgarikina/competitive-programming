@@ -67,6 +67,5 @@ public:
         if(cnt!=0) ans+='1';
         reverse(ans.begin(),ans.end());
         return ans;
-
     }
 };
