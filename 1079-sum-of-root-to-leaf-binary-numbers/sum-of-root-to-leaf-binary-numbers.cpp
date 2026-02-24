@@ -25,7 +25,7 @@ public:
         if(root->right) find(root->right,value);
     }
     int sumRootToLeaf(TreeNode* root) {
-        int value=(0>>1);
+        int value=0;
         find(root,value);
         return sum;
     }
