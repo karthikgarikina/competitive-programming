@@ -1,17 +1,18 @@
 class Solution {
 public:
-    bool valid(int i, int j, vector<vector<int>>&freq){
+    bool valid(int i, int j, vector<vector<bool>>&freq){
         for(int idx=0;idx<26;idx++){
-            if(freq[i][idx]!=0 and freq[j][idx]!=0) return false;
+            if(freq[i][idx] and freq[j][idx]) return false;
         }
         return true;
     }
+
     int maxProduct(vector<string>& words) {
         int n=words.size();
-        vector<vector<int>>freq(n,vector<int>(26,0));
+        vector<vector<bool>>freq(n,vector<bool>(26,false));
         for(int i=0;i<n;i++){
             for(auto ch : words[i]){
-                freq[i][ch-'a']++;
+                freq[i][ch-'a']=true;
             }
         }
         int ans=0;
