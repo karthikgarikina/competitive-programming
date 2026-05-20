@@ -1,20 +1,21 @@
 class Solution {
 public:
-    int getMatch(vector<int>&freq){
-        int cnt=0;
-        for(auto i : freq){
-            if(i==2) cnt++;
-        }
-        return cnt;
-    }
     vector<int> findThePrefixCommonArray(vector<int>& A, vector<int>& B) {
-        int n=A.size();
-        vector<int>freq(n+1,0);
-        vector<int>ans;
-        for(int i=0;i<n;i++){
+        int n = A.size();
+        vector<int>freq(n + 1, 0),ans;
+        int common = 0;
+        for (int i = 0; i < n; i++) {
             freq[A[i]]++;
+            if (freq[A[i]]==2){
+                common++;
+            }
+
             freq[B[i]]++;
-            ans.push_back(getMatch(freq));
+            if (freq[B[i]] == 2){
+                common++;
+            }
+
+            ans.push_back(common);
         }
         return ans;
     }
