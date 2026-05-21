@@ -1,0 +1,1 @@
+{"name":"Local: 2208A","url":"c:\\Users\\garik\\Desktop\\CP\\codeforces\\2208A.cpp","tests":[{"id":1773499451183,"input":"3\n3\n1 2 3\n3 1 4\n4 1 2\n3\n1 1 1\n2 3 4\n1 4 3\n3\n1 1 1\n1 1 1\n1 1 2","output":"YES\nYES\nNO"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\garik\\Desktop\\CP\\codeforces\\2208A.cpp","group":"local","local":true}

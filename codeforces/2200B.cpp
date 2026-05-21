@@ -11,16 +11,15 @@ int main() {
     while (t--) {
         int n;
         cin>>n;
-        int temp,maxi=INT_MIN,cnt=0;
+        int temp,prev=INT_MIN;
+        bool flag=false;
         for(int i=0;i<n;i++){
             cin>>temp;
-            if(temp>maxi){
-                maxi=temp;
-                cnt=1;
-            }
-            else if(temp==maxi) cnt++;
+            if(temp<prev) flag=true;
+            prev=temp;
         }
-        cout<<cnt<<"\n";
+        if(flag) cout<<"1"<<"\n";
+        else cout<<n<<"\n";
     }
 
     return 0;
