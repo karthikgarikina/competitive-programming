@@ -10,26 +10,20 @@ public:
             if(prevLim <= curntLim){
                 int dif = curnt-prev;
                 int canMax = prevLim+dif;
-                // cout<<curnt<<" : "<<canMax<<"\n";
                 if(canMax > curntLim){
-                    // canMax=(canMax+curntLim)/2;
                     canMax -= abs(canMax-curntLim+1)/2;
                 }
                 else{
                     rest[i][1] = canMax;
                 }
                 maxis.push_back(canMax);
-                // cout<<curnt<<" : "<<canMax<<"\n";
             }
             else{
                 int dif = curnt-prev;
                 int canMax = prevLim+dif;
-                // cout<<curnt<<" : "<<canMax<<"\n";
                 if(prevLim-dif <= curntLim){
-                    // canMax=(canMax+curntLim)/2;
                     canMax -= abs(canMax-curntLim+1)/2;
                     maxis.push_back(canMax);
-                    // cout<<curnt<<" : "<<canMax<<"\n";
                 }
                 else{
                     int ed=i-2;
@@ -42,13 +36,11 @@ public:
                             int canMax = lastLim+dif;
                             if(canMax > curntLim){
                                 canMax -= abs(canMax-curntLim+1)/2;
-                                // canMax=(canMax+curntLim)/2;
                             }
                             else{
                                 rest[i][1] = canMax;
                             }
                             maxis.push_back(canMax);
-                            // cout<<curnt<<" : "<<canMax<<"\n";
                             rest[i-1][0] = -1, rest[i-1][1] = ed;
                             break;
                         }
@@ -57,9 +49,7 @@ public:
                             int canMax = lastLim+dif;
                             if(lastLim-dif <= curntLim){
                                 canMax -= abs(canMax-curntLim+1)/2;
-                                // canMax=(canMax+curntLim)/2;
                                 maxis.push_back(canMax);
-                                // cout<<curnt<<" : "<<canMax<<"\n";
                                 rest[i-1][0] = -1, rest[i-1][1] = ed;
                                 break;
                             }
