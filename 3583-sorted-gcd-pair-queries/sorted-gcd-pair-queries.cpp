@@ -27,10 +27,7 @@ public:
     
     vector<int> gcdValues(vector<int>& nums, vector<long long>& queries) {
         int n = nums.size();
-        int maxi = INT_MIN;
-        for(auto i : nums){
-            maxi = max(maxi, i);
-        }
+        int maxi = *max_element(nums.begin(), nums.end());
         vector<vector<int>>possibilites(maxi + 1);
         for(auto i : nums) findFactors(i, possibilites);
         vector<pair<int, long long>>gcds;
