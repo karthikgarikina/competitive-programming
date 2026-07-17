@@ -1,11 +1,11 @@
 class Solution {
 public:
-    void findFactors(int num, vector<vector<int>>& possibilites){
+    void findFactors(int num, vector<int>& possibilites){
         for(int i = 1; i * i <= num; i++){
             if(num % i == 0){
-                possibilites[i].push_back(num);
+                possibilites[i]++;
                 int another = num / i;
-                if(another != i) possibilites[another].push_back(num);
+                if(another != i) possibilites[another]++;
             }
         }
     }
@@ -28,12 +28,12 @@ public:
     vector<int> gcdValues(vector<int>& nums, vector<long long>& queries) {
         int n = nums.size();
         int maxi = *max_element(nums.begin(), nums.end());
-        vector<vector<int>>possibilites(maxi + 1);
+        vector<int>possibilites(maxi + 1, 0);
         for(auto i : nums) findFactors(i, possibilites);
         vector<pair<int, long long>>gcds;
         vector<long long> exact(maxi + 1, 0); 
         for(int i = maxi; i >= 1; i--){
-            long long c = possibilites[i].size();
+            long long c = possibilites[i];
             if(c > 1){
                 long long total = (c * (c - 1)) / 2;
                 for(int mult = 2 * i; mult <= maxi; mult += i){
