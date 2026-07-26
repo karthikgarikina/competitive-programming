@@ -17,6 +17,7 @@ public:
             }
             else if(num < l2) l2 = num;
         }
+        
         return max(l1 * l2 * r1, r1 * r2 * r3);
     }
 };
