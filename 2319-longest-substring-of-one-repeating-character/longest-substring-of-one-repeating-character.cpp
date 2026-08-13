@@ -58,15 +58,13 @@ public:
         buildTree(0, 0, n - 1, s, segTree);
         
         int q = qi.size();
-        vector<int> ans;
-        ans.reserve(q);
-        
+        vector<int> ans(q);
         for(int i = 0; i < q; i++){
             int idx = qi[i];
             char ch = qc[i];
             s[idx] = ch;
             query(0, 0, n - 1, idx, s, segTree);
-            ans.push_back(segTree[0].maxi);
+            ans[i] = segTree[0].maxi;
         }
         return ans;
     }
