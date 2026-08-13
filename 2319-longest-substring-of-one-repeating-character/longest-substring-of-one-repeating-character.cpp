@@ -1,6 +1,12 @@
+struct Node {
+    int left;
+    int right;
+    int maxi;
+};
+
 class Solution {
 public:
-    void buildTree(int idx, int l, int r, string& s, vector<vector<int>>& segTree){
+    void buildTree(int idx, int l, int r, string& s, vector<Node>& segTree){
         if(l == r){
             segTree[idx] = {1, 1, 1};
             return;
@@ -10,17 +16,18 @@ public:
         int rightIdx = idx * 2 + 2;
         buildTree(leftIdx, l, mid, s, segTree);
         buildTree(rightIdx, mid + 1, r, s, segTree);
-        int maxi = 1, left = segTree[leftIdx][0], right = segTree[rightIdx][1];
+        
+        int maxi = 1, left = segTree[leftIdx].left, right = segTree[rightIdx].right;
         if(s[mid] == s[mid + 1]){
-            maxi = segTree[leftIdx][1] + segTree[rightIdx][0];
-            if((mid - l + 1) == segTree[leftIdx][1]) left = maxi;
-            if((r - mid) == segTree[rightIdx][0]) right = maxi;
+            maxi = segTree[leftIdx].right + segTree[rightIdx].left;
+            if((mid - l + 1) == segTree[leftIdx].left) left = maxi;
+            if((r - mid) == segTree[rightIdx].right) right = maxi;
         }
-        maxi = max({maxi, segTree[leftIdx][2], segTree[rightIdx][2]});
+        maxi = max({maxi, segTree[leftIdx].maxi, segTree[rightIdx].maxi});
         segTree[idx] = {left, right, maxi};
     }
 
-    void query(int idx, int l, int r, int t, string& s, vector<vector<int>>& segTree){
+    void query(int idx, int l, int r, int t, string& s, vector<Node>& segTree){
         if(l == t and r == t){
             segTree[idx] = {1, 1, 1};
             return;
@@ -34,29 +41,32 @@ public:
         if(t >= mid + 1 and t <= r){
             query(rightIdx, mid + 1, r, t, s, segTree);
         }
-        int maxi = 1, left = segTree[leftIdx][0], right = segTree[rightIdx][1];
+        
+        int maxi = 1, left = segTree[leftIdx].left, right = segTree[rightIdx].right;
         if(s[mid] == s[mid + 1]){
-            maxi = segTree[leftIdx][1] + segTree[rightIdx][0];
-            if((mid - l + 1) == segTree[leftIdx][1]) left = maxi;
-            if((r - mid) == segTree[rightIdx][0]) right = maxi;
+            maxi = segTree[leftIdx].right + segTree[rightIdx].left;
+            if((mid - l + 1) == segTree[leftIdx].left) left = maxi;
+            if((r - mid) == segTree[rightIdx].right) right = maxi;
         }
-        maxi = max({maxi, segTree[leftIdx][2], segTree[rightIdx][2]});
+        maxi = max({maxi, segTree[leftIdx].maxi, segTree[rightIdx].maxi});
         segTree[idx] = {left, right, maxi};
     }
 
     vector<int> longestRepeating(string s, string qc, vector<int>& qi) {
         int n = s.size();
-        vector<vector<int>>segTree(n*4);
+        vector<Node> segTree(n * 4);
         buildTree(0, 0, n - 1, s, segTree);
+        
         int q = qi.size();
-        vector<int>ans;
-        cout<<segTree[0][2];
+        vector<int> ans;
+        ans.reserve(q);
+        
         for(int i = 0; i < q; i++){
             int idx = qi[i];
             char ch = qc[i];
             s[idx] = ch;
             query(0, 0, n - 1, idx, s, segTree);
-            ans.push_back(segTree[0][2]);
+            ans.push_back(segTree[0].maxi);
         }
         return ans;
     }
