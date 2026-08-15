@@ -3,7 +3,7 @@ public:
     int longestSubsequence(vector<int>& nums) {
         int n = nums.size(), Xor = 0;
         bool all_zeros = true;
-        for(int num : nums){
+        for(int &num : nums){
             Xor ^= num;
             if(num != 0) all_zeros = false;
         }
