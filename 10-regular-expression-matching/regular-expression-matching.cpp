@@ -10,7 +10,7 @@ public:
     bool check(string &s, int idx1, string &p, int idx2, vector<vector<int>>&dp){
         if(idx1 == s.size() and valid(p, idx2) ) return true;
         if(idx1 == s.size() or idx2 == p.size()) return false;
-        if(dp[idx1][idx2] != -1) return dp[idx1][idx2];
+        // if(dp[idx1][idx2] != -1) return dp[idx1][idx2];
 
         if(idx2 < p.size() - 1 and p[idx2 + 1] == '*'){
             if( check(s, idx1, p, idx2 + 2, dp) ) return true;
