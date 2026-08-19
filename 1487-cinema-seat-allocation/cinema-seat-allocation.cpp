@@ -17,7 +17,7 @@ public:
             effected_rows[row] = ( effected_rows[row] | (1 << posi) );
         }
         int ans = n * 2;
-        for(auto &i : effected_rows){
+        for(auto i : effected_rows){
             int row = i.second;
             ans -= actual(row);
         }
