@@ -1,26 +1,24 @@
 class Solution {
 public:
     vector<int> maxDepthAfterSplit(string seq) {
-        int n = seq.size();
+        int n = seq.size(), a = 0, b = 0;
         vector<int>ans(n);
-        int a = 0, b = 0;
-        stack<int>forwards;
         for(int i = 0; i < n; i++){
             if(seq[i] == ')'){
-                int last = forwards.top();
-                forwards.pop();
-                ans[i] = last;
-                if(last == 0) a--;
-                else b--;
-                continue;
-            }
-            if(a < b){
-                ans[i] = 0;
-                a++, forwards.push(0);
+                if(a > b){
+                    ans[i] = 0, a--;
+                }
+                else{
+                    ans[i] = 1, b--;
+                }
             }
             else{
-                ans[i] = 1;
-                b++, forwards.push(1);
+                if(a < b){
+                    ans[i] = 0, a++;
+                }
+                else{
+                    ans[i] = 1, b++;
+                }
             }
         }
         return ans;
