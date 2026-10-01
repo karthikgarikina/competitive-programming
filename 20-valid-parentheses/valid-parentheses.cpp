@@ -4,17 +4,11 @@ public:
         stack<char>st;
         for(auto b : s){
             if(b == '(' || b == '[' || b == '{') st.push(b);
-            else if(b == ')'){
-                if(!st.empty() && st.top() == '(') st.pop();
-                else return false;
-            }
-            else if(b == ']'){
-                if(!st.empty() && st.top() == '[') st.pop();
-                else return false;
-            }
-            else if(b == '}'){
-                if(!st.empty() && st.top() == '{') st.pop();
-                else return false;
+            else{
+                if(st.empty()) return false;
+                if( (st.top() == '(' and b == ')') or (st.top() == '[' and b == ']') or (st.top() == '{' and b == '}') )
+                    st.pop();
+                else return false;    
             }
         }
         return st.empty();
